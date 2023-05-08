@@ -1,7 +1,9 @@
 package br.edu.utfpr.td.tsi.webservice.endpoint;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,8 +38,11 @@ public class Endpoint {
 		Endereco e = new Endereco("Rua Carlos", 261, "Jardim Tocantins", "Toledo", "PR");
 		Emplacamento placa = new Emplacamento("AOX", "PR", "Toledo");
 		Veiculo v = new Veiculo(2016, "preto", "Honda", "moto", placa);
-		Date data = new Date();
-		BoletimFurtoVeiculo b = new BoletimFurtoVeiculo("01", data, "tarde", p, e, v);
+		
+		LocalDate dia = LocalDate.of(2023, Month.MAY, 8);
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String valorFormatado = dia.format(formatador);
+		BoletimFurtoVeiculo b = new BoletimFurtoVeiculo("01", dia, "tarde", p, e, v);
 
 		return Response.ok(b).build();
 

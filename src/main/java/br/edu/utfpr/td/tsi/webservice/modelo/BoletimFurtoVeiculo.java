@@ -1,16 +1,17 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BoletimFurtoVeiculo {
 
-	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
 
 	private String identificador;
-	private Date dataOcorrencia;
+	private LocalDate dataOcorrencia;
 	private String periodoOcorrencia;
 	@JsonIgnore
 	private Parte parte;
@@ -29,7 +30,7 @@ public class BoletimFurtoVeiculo {
 		this.veiculoFurtado = veiculoFurtado;
 	}
 
-	public BoletimFurtoVeiculo(String identificador, Date dataOcorrencia, String periodoOcorrencia, Parte parte,
+	public BoletimFurtoVeiculo(String identificador, LocalDate dataOcorrencia, String periodoOcorrencia, Parte parte,
 			Endereco localOcorrencia, Veiculo veiculoFurtado) {
 		this.identificador = identificador;
 		this.dataOcorrencia = dataOcorrencia;
@@ -47,11 +48,12 @@ public class BoletimFurtoVeiculo {
 		this.identificador = identificador;
 	}
 
-	public Date getDataOcorrencia() {
-		return dataOcorrencia;
+	public String getDataOcorrencia() {
+		String valorFormatado = dataOcorrencia.format(formatador);
+		return valorFormatado;
 	}
 
-	public void setDataOcorrencia(Date dataOcorrencia) {
+	public void setDataOcorrencia(LocalDate dataOcorrencia) {
 		this.dataOcorrencia = dataOcorrencia;
 	}
 
@@ -89,11 +91,11 @@ public class BoletimFurtoVeiculo {
 
 	@Override
 	public String toString() {
-		String dataFormatada = (dataOcorrencia != null ? formato.format(dataOcorrencia) : "");
-		return "BoletimFurtoVeiculo [identificador=" + identificador + ", dataOcorrencia="
-				+ dataFormatada + ", periodoOcorrencia="
-				+ periodoOcorrencia + ", localOcorrencia=" + localOcorrencia + ", veiculoFurtado=" + veiculoFurtado
-				+ "]";
+		return "BoletimFurtoVeiculo [formatador=" + formatador + ", identificador=" + identificador
+				+ ", dataOcorrencia=" + dataOcorrencia + ", periodoOcorrencia=" + periodoOcorrencia + ", parte=" + parte
+				+ ", localOcorrencia=" + localOcorrencia + ", veiculoFurtado=" + veiculoFurtado + "]";
 	}
+
+
 
 }
