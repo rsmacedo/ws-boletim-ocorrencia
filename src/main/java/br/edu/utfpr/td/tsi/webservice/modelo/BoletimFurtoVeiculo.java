@@ -89,7 +89,8 @@ public class BoletimFurtoVeiculo {
 
 	@Override
 	public String toString() {
-		String dataFormatada = (dataOcorrencia != null ? formato.format(dataOcorrencia) : "");
+		//String dataFormatada = (dataOcorrencia != null ? formato.format(dataOcorrencia) : "");
+		String dataFormatada = formato.format(dataOcorrencia);
 		return "BoletimFurtoVeiculo [identificador=" + identificador + ", dataOcorrencia="
 				+ dataFormatada + ", periodoOcorrencia="
 				+ periodoOcorrencia + ", localOcorrencia=" + localOcorrencia + ", veiculoFurtado=" + veiculoFurtado
