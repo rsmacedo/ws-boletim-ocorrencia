@@ -1,9 +1,16 @@
 package br.edu.utfpr.td.tsi.webservice.endpoint;
 
+import java.text.ParseException;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
+import br.edu.utfpr.td.tsi.webservice.modelo.Emplacamento;
+import br.edu.utfpr.td.tsi.webservice.modelo.Endereco;
+import br.edu.utfpr.td.tsi.webservice.modelo.Parte;
+import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
 import br.edu.utfpr.td.tsi.webservice.regras.RegrasBoletim;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -22,12 +29,17 @@ public class Endpoint {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response mostrarTexto() {
+	public Response mostrarTexto() throws ParseException {
 
 		// busquei no banco de dados uma informacao
-		BoletimFurtoVeiculo b = new BoletimFurtoVeiculo();
+		Parte p = new Parte("Rafael", "raffah@gmail.com", "44998195112", "vitima");
+		Endereco e = new Endereco("Rua Carlos", 261, "Jardim Tocantins", "Toledo", "PR");
+		Emplacamento placa = new Emplacamento("AOX", "PR", "Toledo");
+		Veiculo v = new Veiculo(2016, "preto", "Honda", "moto", placa);
+		Date data = new Date();
+		BoletimFurtoVeiculo b = new BoletimFurtoVeiculo("01", data, "tarde", p, e, v);
 
-		return Response.ok("Rafael vc conseguiu!").build();
+		return Response.ok(b).build();
 
 	}
 

@@ -1,17 +1,32 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BoletimFurtoVeiculo {
+
+	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
 	private String identificador;
 	private Date dataOcorrencia;
 	private String periodoOcorrencia;
+	@JsonIgnore
 	private Parte parte;
 	private Endereco localOcorrencia;
 	private Veiculo veiculoFurtado;
 
 	public BoletimFurtoVeiculo() {
+	}
+
+	public BoletimFurtoVeiculo(String identificador, String periodoOcorrencia, Parte parte, Endereco localOcorrencia,
+			Veiculo veiculoFurtado) {
+		this.identificador = identificador;
+		this.periodoOcorrencia = periodoOcorrencia;
+		this.parte = parte;
+		this.localOcorrencia = localOcorrencia;
+		this.veiculoFurtado = veiculoFurtado;
 	}
 
 	public BoletimFurtoVeiculo(String identificador, Date dataOcorrencia, String periodoOcorrencia, Parte parte,
@@ -74,9 +89,11 @@ public class BoletimFurtoVeiculo {
 
 	@Override
 	public String toString() {
-		return "BoletimFurtoVeiculo [identificador=" + identificador + ", dataOcorrencia=" + dataOcorrencia
-				+ ", periodoOcorrencia=" + periodoOcorrencia + ", parte=" + parte + ", localOcorrencia="
-				+ localOcorrencia + ", veiculoFurtado=" + veiculoFurtado + "]";
+		String dataFormatada = (dataOcorrencia != null ? formato.format(dataOcorrencia) : "");
+		return "BoletimFurtoVeiculo [identificador=" + identificador + ", dataOcorrencia="
+				+ dataFormatada + ", periodoOcorrencia="
+				+ periodoOcorrencia + ", localOcorrencia=" + localOcorrencia + ", veiculoFurtado=" + veiculoFurtado
+				+ "]";
 	}
 
 }
