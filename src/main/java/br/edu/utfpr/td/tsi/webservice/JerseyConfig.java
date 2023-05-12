@@ -3,9 +3,9 @@ package br.edu.utfpr.td.tsi.webservice;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
+import br.edu.utfpr.td.tsi.webservice.endpoint.Boletim;
 import br.edu.utfpr.td.tsi.webservice.endpoint.BoletimCidadeEndpoint;
 import br.edu.utfpr.td.tsi.webservice.endpoint.BoletimPeriodoEndpoint;
-import br.edu.utfpr.td.tsi.webservice.endpoint.Endpoint;
 import br.edu.utfpr.td.tsi.webservice.endpoint.ListaBoletinsEndpoint;
 import br.edu.utfpr.td.tsi.webservice.endpoint.VeiculoCorEndpoint;
 import br.edu.utfpr.td.tsi.webservice.endpoint.VeiculoPlacaEndpoint;
@@ -18,7 +18,7 @@ public class JerseyConfig extends ResourceConfig {
 
 	public JerseyConfig() {
 
-		this.register(Endpoint.class);
+		this.register(Boletim.class);
 		this.register(ListaBoletinsEndpoint.class);
 		this.register(BoletimCidadeEndpoint.class);
 		this.register(BoletimPeriodoEndpoint.class);

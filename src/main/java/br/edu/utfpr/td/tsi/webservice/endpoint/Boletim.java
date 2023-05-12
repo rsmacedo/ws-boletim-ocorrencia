@@ -2,8 +2,10 @@ package br.edu.utfpr.td.tsi.webservice.endpoint;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.regras.RegrasBoletim;
 import jakarta.ws.rs.Consumes;
@@ -17,15 +19,18 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("endpoint")
+@Path("boletim")
 @Component
-public class Endpoint {
+public class Boletim {
 
 	@Autowired
 	private RegrasBoletim regrasBoletim;
 
 	@QueryParam("identificador")
 	private String identificador;
+
+	@QueryParam("cidade")
+	private String cidade;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -35,6 +40,12 @@ public class Endpoint {
 			bd = regrasBoletim.listarTodos();
 
 			return Response.ok(bd).build();
+		}
+		if (cidade != null) {
+			ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
+			bd = regrasBoletim.buscarPorCidade(cidade);
+			return Response.ok(bd).build();
+
 		} else
 			b = regrasBoletim.buscarPorId(identificador);
 		return Response.ok(b).build();

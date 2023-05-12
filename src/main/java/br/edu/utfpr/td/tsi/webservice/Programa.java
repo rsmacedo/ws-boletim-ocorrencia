@@ -1,9 +1,7 @@
 package br.edu.utfpr.td.tsi.webservice;
 
 import java.io.FileReader;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
@@ -16,9 +14,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
-import br.edu.utfpr.td.tsi.webservice.modelo.Endereco;
-import br.edu.utfpr.td.tsi.webservice.modelo.Parte;
-import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
+import br.edu.utfpr.td.tsi.webservice.regras.RegrasBoletim;
+import br.edu.utfpr.td.tsi.webservice.regras.regrasBoletimTeste;
 
 @SpringBootApplication
 @ComponentScan("br.edu.utfpr.td.tsi.webservice")
@@ -29,6 +26,8 @@ public class Programa {
 
 		String path = "C:\\temp\\furtos.csv";
 		readDataLineByLine(path);
+		
+		
 		
 		List<BoletimFurtoVeiculo> boletins = new ArrayList<>();
 		
@@ -56,7 +55,6 @@ public class Programa {
 				BoletimFurtoVeiculo boletim = new BoletimFurtoVeiculo();
 				boletim.setIdentificador(linha[1]);
 				boletim.setPeriodoOcorrencia(linha[7]);
-				System.out.println(boletim);
 				
 				/*
 				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
