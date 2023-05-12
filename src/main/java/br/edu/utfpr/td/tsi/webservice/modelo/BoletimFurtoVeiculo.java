@@ -1,11 +1,12 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
+import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class BoletimFurtoVeiculo {
+public class BoletimFurtoVeiculo implements Serializable{
 
 	private String identificador;
 	private Date dataOcorrencia;
