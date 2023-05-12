@@ -1,9 +1,9 @@
 package br.edu.utfpr.td.tsi.webservice;
 
 import java.io.FileReader;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
@@ -19,6 +19,8 @@ import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.Emplacamento;
 import br.edu.utfpr.td.tsi.webservice.modelo.Endereco;
 import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
+import br.edu.utfpr.td.tsi.webservice.regras.RegrasBoletim;
+import br.edu.utfpr.td.tsi.webservice.regras.regrasBoletimTeste;
 
 @SpringBootApplication
 @ComponentScan("br.edu.utfpr.td.tsi.webservice")
@@ -29,7 +31,10 @@ public class Programa {
 
 		String path = "C:\\pasta\\temp\\furtos.csv";
 		readDataLineByLine(path);
+
 		
+		List<BoletimFurtoVeiculo> boletins = new ArrayList<>();
+
 	}
 
 	// Java code to illustrate reading a
@@ -80,6 +85,7 @@ public class Programa {
 				else
 				veiculo.setAnoFabricacao(Integer.parseInt(coluna[49]));
 				veiculo.setTipoVeiculo(coluna[51]);
+				boletim.setVeiculoFurtado(veiculo);
 				boletim.setVeiculoFurtado(veiculo);
 				
 				System.out.println(boletim);

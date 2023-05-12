@@ -14,7 +14,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("lista-boletins-endpoint")
+@Path("boletim/all")
 @Component
 public class ListaBoletinsEndpoint {
 
