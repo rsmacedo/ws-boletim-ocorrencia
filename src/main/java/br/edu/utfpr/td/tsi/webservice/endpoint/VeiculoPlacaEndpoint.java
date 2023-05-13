@@ -17,7 +17,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("veiculo-placa-endpoint")
+@Path("veiculo")
 @Component
 public class VeiculoPlacaEndpoint {
 	

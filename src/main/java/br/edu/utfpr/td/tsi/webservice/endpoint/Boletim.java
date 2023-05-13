@@ -45,7 +45,6 @@ public class Boletim {
 			ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 			bd = regrasBoletim.buscarPorCidade(cidade);
 			return Response.ok(bd).build();
-
 		} else
 			b = regrasBoletim.buscarPorId(identificador);
 		return Response.ok(b).build();
