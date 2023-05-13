@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
-import br.edu.utfpr.td.tsi.webservice.regras.RegrasBoletim;
-import br.edu.utfpr.td.tsi.webservice.regras.RegrasVeiculo;
+import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
+import br.edu.utfpr.td.tsi.webservice.regras.IRegrasVeiculo;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -22,7 +22,7 @@ import jakarta.ws.rs.core.Response;
 public class VeiculoCorEndpoint {
 	
 	@Autowired
-	private RegrasVeiculo regrasVeiculo;
+	private IRegrasVeiculo regrasVeiculo;
 	
 	@QueryParam("cor")
 	private String cor;

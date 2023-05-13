@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
-import br.edu.utfpr.td.tsi.webservice.regras.RegrasBoletim;
+import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -20,7 +20,7 @@ import jakarta.ws.rs.core.Response;
 public class BoletimPeriodoEndpoint {
 
 	@Autowired
-	private RegrasBoletim regrasBoletim;
+	private IRegrasBoletim regrasBoletim;
 	
 	@QueryParam("periodo")
 	private String periodo;

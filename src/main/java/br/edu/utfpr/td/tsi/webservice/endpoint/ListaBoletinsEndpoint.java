@@ -15,7 +15,7 @@ import br.edu.utfpr.td.tsi.webservice.modelo.Emplacamento;
 import br.edu.utfpr.td.tsi.webservice.modelo.Endereco;
 import br.edu.utfpr.td.tsi.webservice.modelo.Parte;
 import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
-import br.edu.utfpr.td.tsi.webservice.regras.RegrasBoletim;
+import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
 import br.edu.utfpr.td.tsi.webservice.utils.CSVReaderUtil;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -28,7 +28,7 @@ import jakarta.ws.rs.core.Response;
 public class ListaBoletinsEndpoint {
 
 	@Autowired
-	private RegrasBoletim regrasBoletim;
+	private IRegrasBoletim regrasBoletim;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

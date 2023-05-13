@@ -69,7 +69,7 @@ public class CSVReaderUtil {
 				boletim.setVeiculoFurtado(veiculo);
 
 				if(boletins.contains(boletim)) {
-					System.out.println("Boletim não adicionado, duplicidade" + boletim);
+					boletins.remove(boletim);
 				}
 				boletins.add(boletim);
 

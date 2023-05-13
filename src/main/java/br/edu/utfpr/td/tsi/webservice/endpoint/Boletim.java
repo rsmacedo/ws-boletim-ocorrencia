@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
-import br.edu.utfpr.td.tsi.webservice.regras.RegrasBoletim;
+import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -24,7 +24,7 @@ import jakarta.ws.rs.core.Response;
 public class Boletim {
 
 	@Autowired
-	private RegrasBoletim regrasBoletim;
+	private IRegrasBoletim regrasBoletim;
 
 	@QueryParam("identificador")
 	private String identificador;
@@ -36,16 +36,9 @@ public class Boletim {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscarPorId(BoletimFurtoVeiculo b) throws ParseException {
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
-		if (identificador != null) {
-			b = regrasBoletim.buscarPorId(identificador);
-			return Response.ok(b).build();
-		}
-		if (cidade != null) {
-			bd = regrasBoletim.buscarPorCidade(cidade);
-			return Response.ok(bd).build();
-		} else
-			bd = regrasBoletim.listarTodos();
-		return Response.ok(b).build();
+		bd = regrasBoletim.buscarBoletim(identificador, cidade);
+		
+		return Response.ok(bd).build();
 	}
 
 	@POST

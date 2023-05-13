@@ -58,14 +58,14 @@ public class BoletimDAOEmMemoria implements BoletimDAO {
 	}
 
 	@Override
-	public BoletimFurtoVeiculo buscarPorId(String id) {
-		BoletimFurtoVeiculo boletim = new BoletimFurtoVeiculo();
+	public ArrayList<BoletimFurtoVeiculo> buscarPorId(String id) {
+		ArrayList<BoletimFurtoVeiculo> boletimBusca = new ArrayList<>();
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getIdentificador().equals(id)) {
-				boletim = b;
+				boletimBusca.add(b);
 			}
 		}
-		return boletim;
+		return boletimBusca;
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class BoletimDAOEmMemoria implements BoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> lerBanco() {
-		String path = "C:\\temp\\furtos.csv";
+		String path = "C:\\pasta\\temp\\furtos.csv";
 		ArrayList<BoletimFurtoVeiculo> boletins = CSVReaderUtil.readDataLineByLine(path);
 		return boletins;
 	}
