@@ -35,18 +35,16 @@ public class Boletim {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscarPorId(BoletimFurtoVeiculo b) throws ParseException {
-		if (identificador == null) {
-			ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
-			bd = regrasBoletim.listarTodos();
-
-			return Response.ok(bd).build();
+		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
+		if (identificador != null) {
+			b = regrasBoletim.buscarPorId(identificador);
+			return Response.ok(b).build();
 		}
 		if (cidade != null) {
-			ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 			bd = regrasBoletim.buscarPorCidade(cidade);
 			return Response.ok(bd).build();
 		} else
-			b = regrasBoletim.buscarPorId(identificador);
+			bd = regrasBoletim.listarTodos();
 		return Response.ok(b).build();
 	}
 

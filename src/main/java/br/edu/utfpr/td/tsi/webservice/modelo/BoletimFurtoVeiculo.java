@@ -3,10 +3,11 @@ package br.edu.utfpr.td.tsi.webservice.modelo;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class BoletimFurtoVeiculo implements Serializable{
+public class BoletimFurtoVeiculo implements Serializable {
 
 	private String identificador;
 	private Date dataOcorrencia;
@@ -37,22 +38,6 @@ public class BoletimFurtoVeiculo implements Serializable{
 		this.localOcorrencia = localOcorrencia;
 		this.veiculoFurtado = veiculoFurtado;
 	}
-	/*
-	 * 
-	 * public BoletimFurtoVeiculo(String identificador, LocalDate dataOcorrencia,
-	 * String periodoOcorrencia, Parte parte, Endereco localOcorrencia, Veiculo
-	 * veiculoFurtado) { this.identificador = identificador; this.dataOcorrencia =
-	 * dataOcorrencia; this.periodoOcorrencia = periodoOcorrencia; this.parte =
-	 * parte; this.localOcorrencia = localOcorrencia; this.veiculoFurtado =
-	 * veiculoFurtado; } public BoletimFurtoVeiculo(String identificador, String
-	 * dataOcorrencia, String periodoOcorrencia, Parte parte, Endereco
-	 * localOcorrencia, Veiculo veiculoFurtado) { this.identificador =
-	 * identificador; LocalDate ld = LocalDate.parse(dataOcorrencia,
-	 * DateTimeFormatter.ofPattern("dd/MM/yyyy")); this.dataOcorrencia = ld;
-	 * this.periodoOcorrencia = periodoOcorrencia; this.parte = parte;
-	 * this.localOcorrencia = localOcorrencia; this.veiculoFurtado = veiculoFurtado;
-	 * }
-	 */
 
 	public String getIdentificador() {
 		return identificador;
@@ -61,14 +46,6 @@ public class BoletimFurtoVeiculo implements Serializable{
 	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
 	}
-
-	/*
-	 * public String getDataOcorrencia() { String valorFormatado =
-	 * dataOcorrencia.format(formatador); return valorFormatado; }
-	 * 
-	 * public void setDataOcorrencia(LocalDate dataOcorrencia) { this.dataOcorrencia
-	 * = dataOcorrencia; }
-	 */
 
 	public String getPeriodoOcorrencia() {
 		return periodoOcorrencia;
@@ -116,5 +93,23 @@ public class BoletimFurtoVeiculo implements Serializable{
 				+ ", periodoOcorrencia=" + periodoOcorrencia + ", parte=" + parte + ", localOcorrencia="
 				+ localOcorrencia + ", veiculoFurtado=" + veiculoFurtado + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(identificador);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BoletimFurtoVeiculo other = (BoletimFurtoVeiculo) obj;
+		return Objects.equals(identificador, other.identificador);
+	}
+	
 
 }

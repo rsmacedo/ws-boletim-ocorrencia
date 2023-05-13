@@ -34,6 +34,7 @@ public class regrasBoletimTeste implements RegrasBoletim {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> listarTodos() {
+		
 		return boletimDAO.listarTodos();
 
 	}

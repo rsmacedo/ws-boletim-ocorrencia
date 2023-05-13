@@ -6,6 +6,8 @@ import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 
 public interface BoletimDAO {
 	
+	public ArrayList<BoletimFurtoVeiculo> lerBanco();
+	
 	public void persistir(BoletimFurtoVeiculo boletim);
 	
 	public void deletar(String id);
