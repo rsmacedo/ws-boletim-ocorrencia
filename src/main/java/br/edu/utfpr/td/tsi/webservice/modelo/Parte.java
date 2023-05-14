@@ -1,10 +1,17 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class Parte {
 
+	@NotBlank
 	private String nome;
+	@Email
 	private String email;
+	@NotBlank
 	private String telefone;
+	@NotBlank
 	private String tipoEnvolvimento;
 
 	public Parte() {

@@ -1,36 +1,46 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
 import java.io.Serializable;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class BoletimFurtoVeiculo implements Serializable {
 
+
+	private static final long serialVersionUID = 2306212553812141268L;
+	@NotBlank
+	private String crime;
 	private String identificador;
 	private Date dataOcorrencia;
+	@NotBlank
 	private String periodoOcorrencia;
-	@JsonIgnore
+	@NotNull @Valid
 	private Parte parte;
+	@NotNull @Valid
 	private Endereco localOcorrencia;
+	@NotNull @Valid
 	private Veiculo veiculoFurtado;
 
 	public BoletimFurtoVeiculo() {
 	}
 
-	public BoletimFurtoVeiculo(DateTimeFormatter formatador, String identificador, Date dataOcorrencia,
-			String periodoOcorrencia, Parte parte, Endereco localOcorrencia, Veiculo veiculoFurtado) {
-		this.identificador = identificador;
-		this.dataOcorrencia = dataOcorrencia;
-		this.periodoOcorrencia = periodoOcorrencia;
-		this.parte = parte;
-		this.localOcorrencia = localOcorrencia;
-		this.veiculoFurtado = veiculoFurtado;
+	public String getCrime() {
+		return crime;
 	}
 
-	public BoletimFurtoVeiculo(String identificador, String periodoOcorrencia, Parte parte, Endereco localOcorrencia,
+	public void setCrime(String crime) {
+		this.crime = crime;
+	}
+
+	public BoletimFurtoVeiculo(
+			String identificador, 
+			String periodoOcorrencia, 
+			Parte parte, 
+			Endereco localOcorrencia,
 			Veiculo veiculoFurtado) {
 		this.identificador = identificador;
 		this.periodoOcorrencia = periodoOcorrencia;
@@ -64,7 +74,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 	}
 
 	public Parte getParte() {
-		return parte;
+		return null;
 	}
 
 	public void setParte(Parte parte) {
@@ -91,7 +101,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 	public String toString() {
 		return "BoletimFurtoVeiculo [identificador=" + identificador + ", dataOcorrencia=" + dataOcorrencia
 				+ ", periodoOcorrencia=" + periodoOcorrencia + ", parte=" + parte + ", localOcorrencia="
-				+ localOcorrencia + ", veiculoFurtado=" + veiculoFurtado + "]";
+				+ localOcorrencia + ", veiculoFurtado=" + veiculoFurtado + "] Eu sou lindo demais";
 	}
 
 	@Override

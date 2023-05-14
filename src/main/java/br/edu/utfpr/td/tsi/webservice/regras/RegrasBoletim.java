@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.controle.persistencia.BoletimDAO;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
-import jakarta.ws.rs.core.Response;
 
 @Component
 public class RegrasBoletim implements IRegrasBoletim {

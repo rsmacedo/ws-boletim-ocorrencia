@@ -6,19 +6,17 @@ import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.utils.CSVReaderUtil;
+import jakarta.validation.Valid;
 
 @Component
 public class BoletimDAOEmMemoria implements BoletimDAO {
 
-	// private ArrayList<BoletimFurtoVeiculo> bd =
-	// CSVReaderUtil.readDataLineByLine(path);
 	private ArrayList<BoletimFurtoVeiculo> bd = lerBanco();
 
 	@Override
-	public void persistir(BoletimFurtoVeiculo boletim) {
+	public void persistir(@Valid BoletimFurtoVeiculo boletim) {
 		bd.add(boletim);
-		System.out.println("Boletim salvo no banco de dados");
-		System.out.println(bd);
+		System.out.println("Boletim salvo no banco de dados: " + boletim);
 
 	}
 
@@ -31,12 +29,11 @@ public class BoletimDAOEmMemoria implements BoletimDAO {
 			}
 		}
 		System.out.println("Boletim excluído com sucesso!");
-		System.out.println(bd);
 
 	}
 
 	@Override
-	public void alterar(BoletimFurtoVeiculo boletim, String id) {
+	public void alterar(@Valid BoletimFurtoVeiculo boletim, String id) {
 		for (BoletimFurtoVeiculo b : bd) {
 			if (boletim.getIdentificador().equals(id)) {
 				bd.remove(b);
@@ -45,15 +42,12 @@ public class BoletimDAOEmMemoria implements BoletimDAO {
 			}
 		}
 		System.out.println("Boletim alterado com sucesso!");
-		System.out.println(bd);
 
 	}
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> listarTodos() {
-
 		return bd;
-
 	}
 
 	@Override
@@ -103,11 +97,9 @@ public class BoletimDAOEmMemoria implements BoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> lerBanco() {
-		String path = "C:\\pasta\\temp\\furtos.csv";
+		String path = "C:\\temp\\furtos.csv";
 		ArrayList<BoletimFurtoVeiculo> boletins = CSVReaderUtil.readDataLineByLine(path);
 		return boletins;
 	}
-
-	// implentar a persistrncia
 
 }

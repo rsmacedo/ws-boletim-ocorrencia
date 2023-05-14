@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
+import jakarta.validation.Valid;
 
 @Component
 public class ControleBoletim {
@@ -12,7 +13,7 @@ public class ControleBoletim {
 	@Autowired
 	private IRegrasBoletim regraBoletim;
 
-	public void redirecionarNovoCadastro(BoletimFurtoVeiculo b) {
+	public void redirecionarNovoCadastro(@Valid BoletimFurtoVeiculo b) {
 		regraBoletim.cadastrar(b);
 	}
 

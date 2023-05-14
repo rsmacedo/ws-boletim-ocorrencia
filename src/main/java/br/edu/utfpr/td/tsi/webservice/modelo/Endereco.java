@@ -1,11 +1,21 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Endereco {
 
+	@NotBlank
 	private String logradouro;
+	@NotNull
+	@Min(value = 1, message = "Número inválido")
 	private int numero;
+	@NotBlank
 	private String bairro;
+	@NotBlank
 	private String cidade;
+	@NotBlank
 	private String estado;
 
 	public Endereco() {

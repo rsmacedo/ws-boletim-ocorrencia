@@ -1,12 +1,22 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
 public class Veiculo {
 
-	private int anoFabricacao;
-	private String cor;
-	private String marca;
-	private String tipoVeiculo;
+	@Valid
 	private Emplacamento emplacamento;
+	@Min(value = 1700, message = "Ano de Fabricação inválido")
+	private int anoFabricacao;
+	@NotBlank
+	private String cor;
+	@NotBlank
+	private String marca;
+	@NotBlank
+	private String tipoVeiculo;
+	
 
 	public Veiculo() {
 	}

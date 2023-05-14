@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -48,11 +49,11 @@ public class BoletimEndpoint {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response cadastrarBoletim(BoletimFurtoVeiculo b) {
+	public Response cadastrarBoletim(@Valid BoletimFurtoVeiculo b) {
 
 		regrasBoletim.cadastrar(b);
 
-		return Response.ok("Recurso Web criado com sucesso: \n" + b).build();
+		return Response.ok(b).build();
 
 	}
 
@@ -63,7 +64,7 @@ public class BoletimEndpoint {
 
 		regrasBoletim.alterar(b, identificador);
 
-		return Response.ok("Recurso Web alterado com sucesso: \n" + b).build();
+		return Response.ok(b).build();
 	}
 
 	@DELETE
@@ -72,7 +73,7 @@ public class BoletimEndpoint {
 
 		regrasBoletim.deletar(identificador);
 
-		return Response.ok("Boletim removido com sucesso\n").build();
+		return Response.ok().build();
 	}
 
 }

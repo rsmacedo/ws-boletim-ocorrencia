@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -48,6 +47,7 @@ public class CSVReaderUtil {
 				boletim.setDataOcorrencia(data);
 				boletim.setPeriodoOcorrencia(coluna[7]);
 				boletim.setParte(null);
+				boletim.setCrime(coluna[26]);
 				endereco.setLogradouro(coluna[13]);
 				endereco.setNumero(Integer.parseInt(coluna[14]));
 				endereco.setBairro(coluna[15]);

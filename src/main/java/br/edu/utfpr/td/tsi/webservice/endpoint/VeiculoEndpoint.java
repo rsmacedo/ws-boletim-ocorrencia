@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
-import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
 import br.edu.utfpr.td.tsi.webservice.regras.IRegrasVeiculo;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
