@@ -1,10 +1,10 @@
 package br.edu.utfpr.td.tsi.webservice.controle.persistencia.validacao;
 
-import br.edu.utfpr.td.tsi.webservice.controle.persistencia.validacao.constraints.PlacaVeiculo;
+import br.edu.utfpr.td.tsi.webservice.controle.persistencia.validacao.constraints.PlacaVeiculoValidacao;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class PlacaVeiculoValidation implements ConstraintValidator<PlacaVeiculo, String>{
+public class PlacaVeiculoValidador implements ConstraintValidator<PlacaVeiculoValidacao, String>{
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {

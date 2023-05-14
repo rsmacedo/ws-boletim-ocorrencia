@@ -60,7 +60,7 @@ public class BoletimEndpoint {
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response alterarBoletim(BoletimFurtoVeiculo b) {
+	public Response alterarBoletim(@Valid BoletimFurtoVeiculo b) {
 
 		regrasBoletim.alterar(b, identificador);
 

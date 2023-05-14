@@ -22,6 +22,7 @@ public class CSVReaderUtil {
 		ArrayList<BoletimFurtoVeiculo> boletins = new ArrayList<>();
 
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		String dataFormatada;
 		try {
 
 			// Create an object of filereader
@@ -44,7 +45,8 @@ public class CSVReaderUtil {
 				Emplacamento emplacamento = new Emplacamento();
 				boletim.setIdentificador(coluna[1]);
 				Date data = formato.parse(coluna[5]);
-				boletim.setDataOcorrencia(data);
+				dataFormatada = formato.format(data);
+				boletim.setDataOcorrencia(dataFormatada);
 				boletim.setPeriodoOcorrencia(coluna[7]);
 				boletim.setParte(null);
 				boletim.setCrime(coluna[26]);

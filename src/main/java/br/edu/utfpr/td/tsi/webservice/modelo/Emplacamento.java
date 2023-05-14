@@ -1,11 +1,11 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
-import br.edu.utfpr.td.tsi.webservice.controle.persistencia.validacao.constraints.PlacaVeiculo;
+import br.edu.utfpr.td.tsi.webservice.controle.persistencia.validacao.constraints.PlacaVeiculoValidacao;
 import jakarta.validation.constraints.NotBlank;
 
 public class Emplacamento {
 
-	@NotBlank @PlacaVeiculo
+	@NotBlank @PlacaVeiculoValidacao
 	private String placa;
 	@NotBlank
 	private String estado;
