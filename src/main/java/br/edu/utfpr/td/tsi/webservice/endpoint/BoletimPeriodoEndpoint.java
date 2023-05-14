@@ -30,7 +30,7 @@ public class BoletimPeriodoEndpoint {
 	public Response buscarPorCidade() throws ParseException {
 
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
-		bd = regrasBoletim.buscarPorPeriodo(periodo);
+		
 
 		return Response.ok(bd).build();
 

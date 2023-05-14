@@ -21,7 +21,7 @@ import jakarta.ws.rs.core.Response;
 
 @Path("boletim")
 @Component
-public class Boletim {
+public class BoletimEndpoint {
 
 	@Autowired
 	private IRegrasBoletim regrasBoletim;
@@ -31,12 +31,16 @@ public class Boletim {
 
 	@QueryParam("cidade")
 	private String cidade;
+	
+	@QueryParam("periodo")
+	private String periodo;
+
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscarPorId(BoletimFurtoVeiculo b) throws ParseException {
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
-		bd = regrasBoletim.buscarBoletim(identificador, cidade);
+		bd = regrasBoletim.buscarBoletim(identificador, cidade, periodo);
 		
 		return Response.ok(bd).build();
 	}

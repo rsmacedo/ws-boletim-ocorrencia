@@ -21,6 +21,8 @@ public interface BoletimDAO {
 	public ArrayList<BoletimFurtoVeiculo> buscarPorCidade(String cidade);
 	
 	public ArrayList<BoletimFurtoVeiculo> buscarPorPeriodo(String periodo);
+	
+	public ArrayList<BoletimFurtoVeiculo> buscarPorCidadeEPeriodo(String cidade, String periodo);
 
 
 }

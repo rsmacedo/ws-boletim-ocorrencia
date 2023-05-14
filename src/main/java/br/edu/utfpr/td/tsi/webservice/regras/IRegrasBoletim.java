@@ -19,11 +19,11 @@ public interface IRegrasBoletim {
 	public ArrayList<BoletimFurtoVeiculo> buscarPorId(String id);
 	
 	public ArrayList<BoletimFurtoVeiculo> buscarPorCidade(String cidade);
-	*/
 	
 	public ArrayList<BoletimFurtoVeiculo> buscarPorPeriodo(String periodo); 
+	*/
 	
-	public ArrayList<BoletimFurtoVeiculo> buscarBoletim(String identificador, String cidade);
+	public ArrayList<BoletimFurtoVeiculo> buscarBoletim(String identificador, String cidade, String periodo);
 	
 
 }

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
+import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
 import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
+import br.edu.utfpr.td.tsi.webservice.regras.IRegrasVeiculo;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -15,24 +17,28 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("boletim-cidade-endpoint")
+@Path("veiculo")
 @Component
-public class BoletimCidadeEndpoint {
-
-	@Autowired
-	private IRegrasBoletim regrasBoletim;
+public class VeiculoEndpoint {
 	
-	@QueryParam("cidade")
-	private String cidade;
+	@Autowired
+	private IRegrasVeiculo regrasVeiculo;
+	
+	@QueryParam("placa")
+	private String placa;
+	
+	@QueryParam("cor")
+	private String cor;
+	
+	@QueryParam("tipo")
+	private String tipo;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarPorCidade() throws ParseException {
-
-		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
-		bd = regrasBoletim.buscarPorCidade(cidade);
-
-		return Response.ok(bd).build();
+	public Response buscarPorCor() throws ParseException {
+		ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
+		veiculos = regrasVeiculo.buscarVeiculo(placa, cor, tipo);
+		return Response.ok(veiculos).build();
 
 	}
 

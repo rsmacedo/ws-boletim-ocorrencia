@@ -34,7 +34,7 @@ public class RegrasBoletim implements IRegrasBoletim {
 	}
 
 	public ArrayList<BoletimFurtoVeiculo> listarTodos() {
-		
+
 		return boletimDAO.listarTodos();
 
 	}
@@ -47,21 +47,25 @@ public class RegrasBoletim implements IRegrasBoletim {
 		return boletimDAO.buscarPorCidade(cidade);
 	}
 
-	@Override
 	public ArrayList<BoletimFurtoVeiculo> buscarPorPeriodo(String periodo) {
 		return boletimDAO.buscarPorPeriodo(periodo);
 	}
 
+	public ArrayList<BoletimFurtoVeiculo> buscarPorCidadeEPeriodo(String cidade, String periodo) {
+		return boletimDAO.buscarPorCidadeEPeriodo(cidade, periodo);
+	}
+
 	@Override
-	public ArrayList<BoletimFurtoVeiculo> buscarBoletim(String identificador, String cidade) {
+	public ArrayList<BoletimFurtoVeiculo> buscarBoletim(String identificador, String cidade, String periodo) {
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 		if (identificador != null) {
 			bd = buscarPorId(identificador);
-			return bd;
-		}
-		if (cidade != null) {
+		} else if (cidade != null && periodo != null) {
+			bd = buscarPorCidadeEPeriodo(cidade, periodo);
+		} else if (cidade != null) {
 			bd = buscarPorCidade(cidade);
-			return bd;
+		} else if (periodo != null) {
+			bd = buscarPorPeriodo(periodo);
 		} else
 			bd = listarTodos();
 		return bd;

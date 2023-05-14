@@ -10,10 +10,9 @@ import br.edu.utfpr.td.tsi.webservice.utils.CSVReaderUtil;
 @Component
 public class BoletimDAOEmMemoria implements BoletimDAO {
 
-	
-	//private ArrayList<BoletimFurtoVeiculo> bd = CSVReaderUtil.readDataLineByLine(path);
+	// private ArrayList<BoletimFurtoVeiculo> bd =
+	// CSVReaderUtil.readDataLineByLine(path);
 	private ArrayList<BoletimFurtoVeiculo> bd = lerBanco();
-	
 
 	@Override
 	public void persistir(BoletimFurtoVeiculo boletim) {
@@ -52,7 +51,7 @@ public class BoletimDAOEmMemoria implements BoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> listarTodos() {
-		
+
 		return bd;
 
 	}
@@ -87,6 +86,18 @@ public class BoletimDAOEmMemoria implements BoletimDAO {
 				boletins.add(b);
 			}
 		}
+		return boletins;
+	}
+
+	@Override
+	public ArrayList<BoletimFurtoVeiculo> buscarPorCidadeEPeriodo(String cidade, String periodo) {
+		ArrayList<BoletimFurtoVeiculo> boletins = new ArrayList<>();
+		for (BoletimFurtoVeiculo b : bd) {
+			if (b.getLocalOcorrencia().getCidade().equals(cidade) && b.getPeriodoOcorrencia().equals(periodo)) {
+				boletins.add(b);
+			}
+		}
+
 		return boletins;
 	}
 
