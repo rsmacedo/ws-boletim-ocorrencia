@@ -55,6 +55,15 @@ public class VeiculoDAOEmMemoria implements VeiculoDAO {
 		return veiculos;
 	}
 
+	@Override
+	public ArrayList<Veiculo> listarTodos(ArrayList<BoletimFurtoVeiculo> bd) {
+		ArrayList<Veiculo> veiculos = new ArrayList<>();
+		for (BoletimFurtoVeiculo b : bd) {
+			veiculos.add(b.getVeiculoFurtado());
+		}
+		return veiculos;
+	}
+
 	// implentar a persistrncia
 
 }

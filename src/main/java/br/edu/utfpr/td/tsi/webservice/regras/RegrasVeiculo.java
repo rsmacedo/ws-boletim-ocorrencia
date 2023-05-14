@@ -41,6 +41,11 @@ public class RegrasVeiculo implements IRegrasVeiculo {
 		return veiculoDAO.buscarPorCorETipo(cor, tipo, bd);
 	}
 
+	public ArrayList<Veiculo> listarTodos() {
+		bd = boletimDAO.listarTodos();
+		return veiculoDAO.listarTodos(bd);
+	}
+
 	@Override
 	public ArrayList<Veiculo> buscarVeiculo(String placa, String cor, String tipo) {
 		ArrayList<Veiculo> veiculos = new ArrayList<>();
@@ -53,7 +58,10 @@ public class RegrasVeiculo implements IRegrasVeiculo {
 			veiculos = buscarPorCor(cor);
 		} else if (tipo != null) {
 			veiculos = buscarPorTipo(tipo);
+		} else {
+			veiculos = listarTodos();
 		}
+
 		return veiculos;
 	}
 

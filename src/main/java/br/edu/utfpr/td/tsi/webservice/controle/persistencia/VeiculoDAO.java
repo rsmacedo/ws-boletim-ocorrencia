@@ -14,5 +14,7 @@ public interface VeiculoDAO {
 	public ArrayList<Veiculo> buscarPorTipo(String tipo, ArrayList<BoletimFurtoVeiculo> bd);
 	
 	public ArrayList<Veiculo> buscarPorCorETipo(String cor, String tipo, ArrayList<BoletimFurtoVeiculo> bd);
+	
+	public ArrayList<Veiculo> listarTodos(ArrayList<BoletimFurtoVeiculo> bd);
 
 }
