@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
+import br.edu.utfpr.td.tsi.webservice.modelo.EnvolvidoEm;
 import br.edu.utfpr.td.tsi.webservice.utils.CSVReaderUtil;
 import jakarta.validation.Valid;
 
@@ -47,6 +48,15 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> listarTodos() {
+		for (BoletimFurtoVeiculo b : this.bd) {
+			EnvolvidoEm envolvido = new EnvolvidoEm();
+			envolvido.setIdentificador(b.getIdentificador());
+			envolvido.setCrime(b.getCrime());
+			if(!b.getVeiculoFurtado().getEnvolvidoEm().contains(envolvido)) {
+			b.getVeiculoFurtado().adicionarListaEnvolvido(envolvido);
+			}
+
+		}
 		return bd;
 	}
 
@@ -56,6 +66,9 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getIdentificador().equals(id)) {
 				boletimBusca.add(b);
+				EnvolvidoEm envolvido = new EnvolvidoEm();
+				envolvido.setIdentificador(b.getIdentificador());
+				envolvido.setCrime(b.getCrime());
 			}
 		}
 		return boletimBusca;
@@ -97,7 +110,7 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> lerBanco() {
-		String path = "C:\\pasta\\temp\\furtos.csv";
+		String path = "C:\\temp\\furtos.csv";
 		ArrayList<BoletimFurtoVeiculo> boletins = CSVReaderUtil.readDataLineByLine(path);
 		return boletins;
 	}

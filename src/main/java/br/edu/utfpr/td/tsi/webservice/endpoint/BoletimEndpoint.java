@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -32,17 +33,16 @@ public class BoletimEndpoint {
 
 	@QueryParam("cidade")
 	private String cidade;
-	
+
 	@QueryParam("periodo")
 	private String periodo;
-
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscarPorId(BoletimFurtoVeiculo b) throws ParseException {
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 		bd = regrasBoletim.buscarBoletim(identificador, cidade, periodo);
-		
+
 		return Response.ok(bd).build();
 	}
 
@@ -71,9 +71,18 @@ public class BoletimEndpoint {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response removerBoletim() {
 
-		regrasBoletim.deletar(identificador);
+		if (identificador != null) {
+			if (identificador.isBlank()) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			} else {
+				//verificar se existe boletim com identificador passado e ai remover,se nãoretorna um return Response.status(Response.Status.BAD_REQUEST).build(); 
+				regrasBoletim.deletar(identificador);
+				return Response.ok().build();
+			}
+		} else {
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
 
-		return Response.ok().build();
 	}
 
 }

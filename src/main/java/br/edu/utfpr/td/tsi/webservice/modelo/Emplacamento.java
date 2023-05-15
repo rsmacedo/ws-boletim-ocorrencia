@@ -1,9 +1,28 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
+import java.util.Objects;
+
 import br.edu.utfpr.td.tsi.webservice.controle.persistencia.validacao.constraints.PlacaVeiculoValidacao;
 import jakarta.validation.constraints.NotBlank;
 
 public class Emplacamento {
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(placa);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Emplacamento other = (Emplacamento) obj;
+		return Objects.equals(placa, other.placa);
+	}
 
 	@NotBlank @PlacaVeiculoValidacao
 	private String placa;

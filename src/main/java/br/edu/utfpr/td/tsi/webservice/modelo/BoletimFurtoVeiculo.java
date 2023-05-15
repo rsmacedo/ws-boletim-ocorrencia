@@ -14,7 +14,6 @@ import jakarta.validation.constraints.Past;
 public class BoletimFurtoVeiculo implements Serializable {
 
 
-	//private static final long serialVersionUID = 2306212553812141268L;
 	@NotBlank
 	private String crime;
 	private String identificador;
@@ -122,7 +121,7 @@ public class BoletimFurtoVeiculo implements Serializable {
 	public String toString() {
 		return "BoletimFurtoVeiculo [identificador=" + identificador + ", dataOcorrencia=" + dataOcorrencia
 				+ ", periodoOcorrencia=" + periodoOcorrencia + ", parte=" + parte + ", localOcorrencia="
-				+ localOcorrencia + ", veiculoFurtado=" + veiculoFurtado + "] Eu sou lindo demais";
+				+ localOcorrencia + ", veiculoFurtado=" + veiculoFurtado + "]";
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -21,9 +22,9 @@ public class Veiculo {
 	@NotBlank
 	private String tipoVeiculo;
 	private ArrayList<EnvolvidoEm> envolvidoEm;
-	
 
 	public Veiculo() {
+		this.envolvidoEm = new ArrayList<EnvolvidoEm>();
 	}
 
 	public Veiculo(int anoFabricacao, String cor, String marca, String tipoVeiculo, Emplacamento emplacamento) {
@@ -32,6 +33,7 @@ public class Veiculo {
 		this.marca = marca;
 		this.tipoVeiculo = tipoVeiculo;
 		this.emplacamento = emplacamento;
+		this.envolvidoEm = new ArrayList<EnvolvidoEm>();
 	}
 
 	public int getAnoFabricacao() {
@@ -73,8 +75,7 @@ public class Veiculo {
 	public void setEmplacamento(Emplacamento emplacamento) {
 		this.emplacamento = emplacamento;
 	}
-	
-	
+
 	public ArrayList<EnvolvidoEm> getEnvolvidoEm() {
 		return envolvidoEm;
 	}
@@ -82,23 +83,45 @@ public class Veiculo {
 	public void setEnvolvidoEm(ArrayList<EnvolvidoEm> envolvidoEm) {
 		this.envolvidoEm = envolvidoEm;
 	}
-	
-	/*public void adicionarEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd) {
-		for(BoletimFurtoVeiculo b: bd) {
-			if(b.getVeiculoFurtado().getEmplacamento().getPlaca() == this.emplacamento.getPlaca()) {
-				this.envolvidoEm.setIdentificador(b.getIdentificador());
-				this.envolvidoEm.setCrime(b.getCrime());
-			}else {
-				this.envolvidoEm = null;
-			}
+
+	public void adicionarListaEnvolvido(EnvolvidoEm envolvidoEm) {
+		if (this.envolvidoEm.contains(envolvidoEm)) {
+			System.out.println(envolvidoEm + " já registrado");
+		} else {
+			this.envolvidoEm.add(envolvidoEm);
 		}
-	}*/
+	}
+	/*
+	 * public void adicionarEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd) {
+	 * for(BoletimFurtoVeiculo b: bd) {
+	 * if(b.getVeiculoFurtado().getEmplacamento().getPlaca() ==
+	 * this.emplacamento.getPlaca()) {
+	 * this.envolvidoEm.setIdentificador(b.getIdentificador());
+	 * this.envolvidoEm.setCrime(b.getCrime()); }else { this.envolvidoEm = null; } }
+	 * }
+	 */
 
 	@Override
 	public String toString() {
 		return "Veiculo [anoFabricacao=" + anoFabricacao + ", cor=" + cor + ", marca=" + marca + ", tipoVeiculo="
 				+ tipoVeiculo + ", emplacamento=" + emplacamento + "]";
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(emplacamento);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Veiculo other = (Veiculo) obj;
+		return Objects.equals(emplacamento, other.emplacamento);
+	}
+
 }

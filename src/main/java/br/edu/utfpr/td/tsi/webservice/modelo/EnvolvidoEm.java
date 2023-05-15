@@ -1,6 +1,5 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
