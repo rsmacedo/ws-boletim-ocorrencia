@@ -1,5 +1,7 @@
 package br.edu.utfpr.td.tsi.webservice.modelo;
 
+import java.util.ArrayList;
+
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -18,6 +20,7 @@ public class Veiculo {
 	private String marca;
 	@NotBlank
 	private String tipoVeiculo;
+	private ArrayList<EnvolvidoEm> envolvidoEm;
 	
 
 	public Veiculo() {
@@ -70,6 +73,26 @@ public class Veiculo {
 	public void setEmplacamento(Emplacamento emplacamento) {
 		this.emplacamento = emplacamento;
 	}
+	
+	
+	public ArrayList<EnvolvidoEm> getEnvolvidoEm() {
+		return envolvidoEm;
+	}
+
+	public void setEnvolvidoEm(ArrayList<EnvolvidoEm> envolvidoEm) {
+		this.envolvidoEm = envolvidoEm;
+	}
+	
+	/*public void adicionarEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd) {
+		for(BoletimFurtoVeiculo b: bd) {
+			if(b.getVeiculoFurtado().getEmplacamento().getPlaca() == this.emplacamento.getPlaca()) {
+				this.envolvidoEm.setIdentificador(b.getIdentificador());
+				this.envolvidoEm.setCrime(b.getCrime());
+			}else {
+				this.envolvidoEm = null;
+			}
+		}
+	}*/
 
 	@Override
 	public String toString() {

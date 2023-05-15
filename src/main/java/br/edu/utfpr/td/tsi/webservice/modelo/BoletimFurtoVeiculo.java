@@ -14,7 +14,7 @@ import jakarta.validation.constraints.Past;
 public class BoletimFurtoVeiculo implements Serializable {
 
 
-	private static final long serialVersionUID = 2306212553812141268L;
+	//private static final long serialVersionUID = 2306212553812141268L;
 	@NotBlank
 	private String crime;
 	private String identificador;

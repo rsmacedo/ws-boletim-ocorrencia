@@ -9,7 +9,7 @@ import br.edu.utfpr.td.tsi.webservice.utils.CSVReaderUtil;
 import jakarta.validation.Valid;
 
 @Component
-public class BoletimDAOEmMemoria implements BoletimDAO {
+public class BoletimDAOEmMemoria implements IBoletimDAO {
 
 	private ArrayList<BoletimFurtoVeiculo> bd = lerBanco();
 
@@ -97,7 +97,7 @@ public class BoletimDAOEmMemoria implements BoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> lerBanco() {
-		String path = "C:\\temp\\furtos.csv";
+		String path = "C:\\pasta\\temp\\furtos.csv";
 		ArrayList<BoletimFurtoVeiculo> boletins = CSVReaderUtil.readDataLineByLine(path);
 		return boletins;
 	}

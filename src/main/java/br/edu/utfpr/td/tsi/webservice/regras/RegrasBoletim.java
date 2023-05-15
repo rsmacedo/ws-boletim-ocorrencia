@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.edu.utfpr.td.tsi.webservice.controle.persistencia.BoletimDAO;
+import br.edu.utfpr.td.tsi.webservice.controle.persistencia.IBoletimDAO;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 
 @Component
 public class RegrasBoletim implements IRegrasBoletim {
 
 	@Autowired
-	private BoletimDAO boletimDAO;
+	private IBoletimDAO boletimDAO;
 
 	@Override
 	public void cadastrar(BoletimFurtoVeiculo boletim) {

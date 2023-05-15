@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
 
-public interface VeiculoDAO {
+public interface IVeiculoDAO {
 
 	public ArrayList<Veiculo> buscarPorPlaca(String placa, ArrayList<BoletimFurtoVeiculo> bd);
 
@@ -16,5 +16,7 @@ public interface VeiculoDAO {
 	public ArrayList<Veiculo> buscarPorCorETipo(String cor, String tipo, ArrayList<BoletimFurtoVeiculo> bd);
 	
 	public ArrayList<Veiculo> listarTodos(ArrayList<BoletimFurtoVeiculo> bd);
+	
+	//public ArrayList<BoletimFurtoVeiculo>adicionarEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd);
 
 }

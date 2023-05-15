@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.edu.utfpr.td.tsi.webservice.controle.persistencia.BoletimDAO;
-import br.edu.utfpr.td.tsi.webservice.controle.persistencia.VeiculoDAO;
+import br.edu.utfpr.td.tsi.webservice.controle.persistencia.IBoletimDAO;
+import br.edu.utfpr.td.tsi.webservice.controle.persistencia.IVeiculoDAO;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
 
@@ -14,10 +14,10 @@ import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
 public class RegrasVeiculo implements IRegrasVeiculo {
 
 	@Autowired
-	private VeiculoDAO veiculoDAO;
+	private IVeiculoDAO veiculoDAO;
 
 	@Autowired
-	BoletimDAO boletimDAO;
+	IBoletimDAO boletimDAO;
 
 	private ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 
@@ -65,4 +65,10 @@ public class RegrasVeiculo implements IRegrasVeiculo {
 		return veiculos;
 	}
 
+/*	@Override
+	public ArrayList<BoletimFurtoVeiculo> adicionarEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd) {
+		
+		return null;
+	}
+*/
 }

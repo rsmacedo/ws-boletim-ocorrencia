@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 
-public interface BoletimDAO {
+public interface IBoletimDAO {
 	
 	public ArrayList<BoletimFurtoVeiculo> lerBanco();
 	
