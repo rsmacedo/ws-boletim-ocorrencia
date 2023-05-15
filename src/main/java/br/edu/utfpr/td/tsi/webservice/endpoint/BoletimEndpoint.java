@@ -71,14 +71,8 @@ public class BoletimEndpoint {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response removerBoletim() {
 
-		if (identificador != null) {
-			if (identificador.isBlank()) {
-				return Response.status(Response.Status.BAD_REQUEST).build();
-			} else {
-				//verificar se existe boletim com identificador passado e ai remover,se nãoretorna um return Response.status(Response.Status.BAD_REQUEST).build(); 
-				regrasBoletim.deletar(identificador);
-				return Response.ok().build();
-			}
+		if (regrasBoletim.deletar(identificador)) {
+			return Response.ok().build();
 		} else {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}

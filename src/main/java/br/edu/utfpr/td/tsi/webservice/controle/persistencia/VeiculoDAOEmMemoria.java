@@ -15,7 +15,6 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 	public ArrayList<Veiculo> buscarPorPlaca(String placa, ArrayList<BoletimFurtoVeiculo> bd) {
 		ArrayList<Veiculo> veiculos = new ArrayList<>();
 		EnvolvidoEm envolvido = new EnvolvidoEm();
-		// adicionarEnvolvimento(bd);
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getVeiculoFurtado().getEmplacamento().getPlaca().equals(placa)) {
 				envolvido.setIdentificador(b.getIdentificador());
@@ -31,8 +30,8 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 
 	@Override
 	public ArrayList<Veiculo> buscarPorCor(String cor, ArrayList<BoletimFurtoVeiculo> bd) {
+		cor = cor.toUpperCase();
 		ArrayList<Veiculo> veiculos = new ArrayList<>();
-		// adicionarEnvolvimento(bd);
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getVeiculoFurtado().getCor().equals(cor)) {
 				veiculos.add(b.getVeiculoFurtado());
@@ -43,8 +42,8 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 
 	@Override
 	public ArrayList<Veiculo> buscarPorTipo(String tipo, ArrayList<BoletimFurtoVeiculo> bd) {
+		tipo = tipo.toUpperCase();
 		ArrayList<Veiculo> veiculos = new ArrayList<>();
-		// adicionarEnvolvimento(bd);
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getVeiculoFurtado().getTipoVeiculo().equals(tipo)) {
 				veiculos.add(b.getVeiculoFurtado());
@@ -55,8 +54,10 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 
 	@Override
 	public ArrayList<Veiculo> buscarPorCorETipo(String cor, String tipo, ArrayList<BoletimFurtoVeiculo> bd) {
+		cor = cor.toUpperCase();
+		tipo = tipo.toUpperCase();
+		
 		ArrayList<Veiculo> veiculos = new ArrayList<>();
-		// adicionarEnvolvimento(bd);
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getVeiculoFurtado().getCor().equals(cor) && b.getVeiculoFurtado().getTipoVeiculo().equals(tipo)) {
 				veiculos.add(b.getVeiculoFurtado());
@@ -86,6 +87,5 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 		}
 	}
 
-	// implentar a persistrncia
 
 }

@@ -47,26 +47,26 @@ public class CSVReaderUtil {
 				Date data = formato.parse(coluna[5]);
 				dataFormatada = formato.format(data);
 				boletim.setDataOcorrencia(dataFormatada);
-				boletim.setPeriodoOcorrencia(coluna[7]);
+				boletim.setPeriodoOcorrencia(coluna[7].toUpperCase());
 				boletim.setParte(null);
 				boletim.setCrime(coluna[26]);
 				endereco.setLogradouro(coluna[13]);
 				endereco.setNumero(Integer.parseInt(coluna[14]));
 				endereco.setBairro(coluna[15]);
-				endereco.setCidade(coluna[16]);
+				endereco.setCidade(coluna[16].toUpperCase());
 				endereco.setEstado(coluna[17]);
 				boletim.setLocalOcorrencia(endereco);
 				emplacamento.setPlaca(coluna[44]);
 				emplacamento.setEstado(coluna[45]);
 				emplacamento.setCidade(coluna[46]);
 				veiculo.setEmplacamento(emplacamento);
-				veiculo.setCor(coluna[47]);
+				veiculo.setCor(coluna[47].toUpperCase());
 				veiculo.setMarca(coluna[48]);
 				if (coluna[49] == "")
 					veiculo.setAnoFabricacao(0);
 				else
 					veiculo.setAnoFabricacao(Integer.parseInt(coluna[49]));
-				veiculo.setTipoVeiculo(coluna[51]);
+				veiculo.setTipoVeiculo(coluna[51].toUpperCase());
 				boletim.setVeiculoFurtado(veiculo);
 				boletim.setVeiculoFurtado(veiculo);
 

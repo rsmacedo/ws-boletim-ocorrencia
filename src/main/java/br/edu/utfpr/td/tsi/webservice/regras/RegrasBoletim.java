@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.controle.persistencia.IBoletimDAO;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
+import jakarta.ws.rs.core.Response;
 
 @Component
 public class RegrasBoletim implements IRegrasBoletim {
@@ -21,13 +22,26 @@ public class RegrasBoletim implements IRegrasBoletim {
 	}
 
 	@Override
-	public void deletar(String id) {
-		boletimDAO.deletar(id);
+	public Boolean deletar(String id) {
+
+		if (id != null) {
+			if (id.isBlank()) {
+				return false;
+			} else {
+				if (boletimDAO.deletar(id)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} else
+			return false;
 
 	}
 
 	@Override
 	public void alterar(BoletimFurtoVeiculo boletim, String id) {
+		
 		boletimDAO.alterar(boletim, id);
 
 	}
@@ -39,23 +53,28 @@ public class RegrasBoletim implements IRegrasBoletim {
 	}
 
 	public ArrayList<BoletimFurtoVeiculo> buscarPorId(String id) {
+		
 		return boletimDAO.buscarPorId(id);
 	}
 
 	public ArrayList<BoletimFurtoVeiculo> buscarPorCidade(String cidade) {
+
 		return boletimDAO.buscarPorCidade(cidade);
 	}
 
 	public ArrayList<BoletimFurtoVeiculo> buscarPorPeriodo(String periodo) {
+
 		return boletimDAO.buscarPorPeriodo(periodo);
 	}
 
 	public ArrayList<BoletimFurtoVeiculo> buscarPorCidadeEPeriodo(String cidade, String periodo) {
+		
 		return boletimDAO.buscarPorCidadeEPeriodo(cidade, periodo);
 	}
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> buscarBoletim(String identificador, String cidade, String periodo) {
+		
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 		if (identificador != null) {
 			bd = buscarPorId(identificador);

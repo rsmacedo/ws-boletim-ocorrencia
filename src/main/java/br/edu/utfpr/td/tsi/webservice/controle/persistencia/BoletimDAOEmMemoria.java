@@ -22,15 +22,17 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 	}
 
 	@Override
-	public void deletar(String id) {
+	public Boolean deletar(String id) {
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getIdentificador().equals(id)) {
 				bd.remove(b);
-				return;
+				System.out.println("Boletim excluído com sucesso!");
+				return true;
 			}
 		}
-		System.out.println("Boletim excluído com sucesso!");
-
+		System.out.println("Falha ao excluir");
+		return false;
+	
 	}
 
 	@Override
@@ -76,6 +78,8 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> buscarPorCidade(String cidade) {
+		cidade = cidade.toUpperCase();
+
 		ArrayList<BoletimFurtoVeiculo> boletins = new ArrayList<>();
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getLocalOcorrencia().getCidade().equals(cidade)) {
@@ -87,6 +91,7 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> buscarPorPeriodo(String periodo) {
+		periodo = periodo.toUpperCase();
 		ArrayList<BoletimFurtoVeiculo> boletins = new ArrayList<>();
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getPeriodoOcorrencia().equals(periodo)) {
@@ -98,6 +103,8 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> buscarPorCidadeEPeriodo(String cidade, String periodo) {
+		cidade = cidade.toUpperCase();
+		periodo = periodo.toUpperCase();
 		ArrayList<BoletimFurtoVeiculo> boletins = new ArrayList<>();
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getLocalOcorrencia().getCidade().equals(cidade) && b.getPeriodoOcorrencia().equals(periodo)) {
@@ -110,7 +117,7 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> lerBanco() {
-		String path = "C:\\temp\\furtos.csv";
+		String path = "C:\\pasta\\temp\\furtos.csv";
 		ArrayList<BoletimFurtoVeiculo> boletins = CSVReaderUtil.readDataLineByLine(path);
 		return boletins;
 	}
