@@ -65,10 +65,5 @@ public class RegrasVeiculo implements IRegrasVeiculo {
 		return veiculos;
 	}
 
-/*	@Override
-	public ArrayList<BoletimFurtoVeiculo> adicionarEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd) {
-		
-		return null;
-	}
-*/
+
 }

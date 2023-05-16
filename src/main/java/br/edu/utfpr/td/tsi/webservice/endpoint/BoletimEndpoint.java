@@ -74,7 +74,7 @@ public class BoletimEndpoint {
 		if (regrasBoletim.deletar(identificador)) {
 			return Response.ok().build();
 		} else {
-			return Response.status(Response.Status.BAD_REQUEST).build();
+			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 
 	}
