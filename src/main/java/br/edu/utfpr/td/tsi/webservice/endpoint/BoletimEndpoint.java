@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.regras.IRegrasBoletim;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;

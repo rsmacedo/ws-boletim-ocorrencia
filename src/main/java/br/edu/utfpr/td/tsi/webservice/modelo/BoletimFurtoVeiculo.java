@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -12,25 +13,30 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 public class BoletimFurtoVeiculo implements Serializable {
-
+	private static final long serialVersionUID = 1L;
 
 	@NotBlank
 	private String crime;
 	private String identificador;
-	@NotNull @Past
+	@NotNull
+	@Past
 	private Date dataOcorrencia;
 	@NotBlank
 	private String periodoOcorrencia;
-	@NotNull @Valid
+	@NotNull
+	@Valid
 	private Parte parte;
-	@NotNull @Valid
+	@NotNull
+	@Valid
 	private Endereco localOcorrencia;
-	@NotNull @Valid
+	@NotNull
+	@Valid
 	private Veiculo veiculoFurtado;
 	String pattern = "dd/MM/yyyy";
 	SimpleDateFormat formato = new SimpleDateFormat(pattern);
 
 	public BoletimFurtoVeiculo() {
+		this.identificador = UUID.randomUUID().toString();
 	}
 
 	public String getCrime() {
@@ -40,14 +46,12 @@ public class BoletimFurtoVeiculo implements Serializable {
 	public void setCrime(String crime) {
 		this.crime = crime;
 	}
-	
-	
 
-	public BoletimFurtoVeiculo(@NotBlank String crime, String identificador, @NotBlank String dataOcorrencia,
+	public BoletimFurtoVeiculo(@NotBlank String crime, @NotBlank String dataOcorrencia,
 			@NotBlank String periodoOcorrencia, @NotNull @Valid Parte parte, @NotNull @Valid Endereco localOcorrencia,
 			@NotNull @Valid Veiculo veiculoFurtado) throws ParseException {
 		this.crime = crime;
-		this.identificador = identificador;
+		this.identificador = UUID.randomUUID().toString();
 		this.dataOcorrencia = formato.parse(dataOcorrencia);
 		this.periodoOcorrencia = periodoOcorrencia;
 		this.parte = parte;
@@ -55,13 +59,9 @@ public class BoletimFurtoVeiculo implements Serializable {
 		this.veiculoFurtado = veiculoFurtado;
 	}
 
-	public BoletimFurtoVeiculo(
-			String identificador, 
-			String periodoOcorrencia, 
-			Parte parte, 
-			Endereco localOcorrencia,
+	public BoletimFurtoVeiculo(String periodoOcorrencia, Parte parte, Endereco localOcorrencia,
 			Veiculo veiculoFurtado) {
-		this.identificador = identificador;
+		this.identificador = UUID.randomUUID().toString();
 		this.periodoOcorrencia = periodoOcorrencia;
 		this.parte = parte;
 		this.localOcorrencia = localOcorrencia;
@@ -140,6 +140,5 @@ public class BoletimFurtoVeiculo implements Serializable {
 		BoletimFurtoVeiculo other = (BoletimFurtoVeiculo) obj;
 		return Objects.equals(identificador, other.identificador);
 	}
-	
 
 }

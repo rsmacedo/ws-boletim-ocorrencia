@@ -36,7 +36,6 @@ public class RegrasBoletim implements IRegrasBoletim {
 			}
 		} else
 			return false;
-
 	}
 
 	@Override

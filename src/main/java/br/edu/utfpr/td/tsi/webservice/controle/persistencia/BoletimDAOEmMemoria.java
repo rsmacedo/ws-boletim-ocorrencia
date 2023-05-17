@@ -117,7 +117,7 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> lerBanco() {
-		String path = "C:\\pasta\\temp\\furtos.csv";
+		String path = "C:\\temp\\furtos.csv";
 		ArrayList<BoletimFurtoVeiculo> boletins = CSVReaderUtil.readDataLineByLine(path);
 		return boletins;
 	}
