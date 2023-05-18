@@ -38,7 +38,7 @@ public class BoletimEndpoint {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarPorId(BoletimFurtoVeiculo b) throws ParseException {
+	public Response buscarBoletim(BoletimFurtoVeiculo b) throws ParseException {
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 		bd = regrasBoletim.buscarBoletim(identificador, cidade, periodo);
 
@@ -70,11 +70,8 @@ public class BoletimEndpoint {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response removerBoletim() {
 
-		if (regrasBoletim.deletar(identificador)) {
-			return Response.ok().build();
-		} else {
-			return Response.status(Response.Status.NOT_FOUND).build();
-		}
+		regrasBoletim.deletar(identificador);
+		return Response.ok().build();
 
 	}
 

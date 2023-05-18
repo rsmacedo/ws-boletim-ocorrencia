@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
+import br.edu.utfpr.td.tsi.webservice.excecoes.veiculo.VeiculoNaoEncontradoException;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.EnvolvidoEm;
 import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
@@ -21,7 +22,10 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 				adicionarEnvolvimento(bd);
 				veiculos.add(b.getVeiculoFurtado());
 			}
+		}
 
+		if (veiculos.isEmpty()) {
+			throw new VeiculoNaoEncontradoException("Veículo não encontrado");
 		}
 
 		return veiculos;
@@ -37,6 +41,11 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 				veiculos.add(b.getVeiculoFurtado());
 			}
 		}
+
+		if (veiculos.isEmpty()) {
+			throw new VeiculoNaoEncontradoException("Cor não encontrada");
+		}
+
 		return veiculos;
 	}
 
@@ -49,6 +58,11 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 				veiculos.add(b.getVeiculoFurtado());
 			}
 		}
+
+		if (veiculos.isEmpty()) {
+			throw new VeiculoNaoEncontradoException("Tipo não encontrado");
+		}
+
 		return veiculos;
 	}
 
@@ -56,13 +70,18 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 	public ArrayList<Veiculo> buscarPorCorETipo(String cor, String tipo, ArrayList<BoletimFurtoVeiculo> bd) {
 		cor = cor.toUpperCase();
 		tipo = tipo.toUpperCase();
-		
+
 		ArrayList<Veiculo> veiculos = new ArrayList<>();
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getVeiculoFurtado().getCor().equals(cor) && b.getVeiculoFurtado().getTipoVeiculo().equals(tipo)) {
 				veiculos.add(b.getVeiculoFurtado());
 			}
 		}
+		
+		if (veiculos.isEmpty()) {
+			throw new VeiculoNaoEncontradoException("Cor ou tipo não encontrado");
+		}
+		
 		return veiculos;
 	}
 
@@ -86,6 +105,5 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 			b.getVeiculoFurtado().adicionarListaEnvolvido(envolvido);
 		}
 	}
-
 
 }

@@ -33,7 +33,7 @@ public class VeiculoEndpoint {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarPorCor() throws ParseException {
+	public Response buscarVeiculo() throws ParseException {
 		ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
 		veiculos = regrasVeiculo.buscarVeiculo(placa, cor, tipo);
 		return Response.ok(veiculos).build();

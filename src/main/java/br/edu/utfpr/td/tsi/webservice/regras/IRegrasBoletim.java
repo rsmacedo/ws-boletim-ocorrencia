@@ -9,7 +9,7 @@ public interface IRegrasBoletim {
 
 	public void cadastrar(BoletimFurtoVeiculo boletim);
 	
-	public Boolean deletar(String id);
+	public void deletar(String id);
 	
 	public void alterar(BoletimFurtoVeiculo boletim, String id);
 	

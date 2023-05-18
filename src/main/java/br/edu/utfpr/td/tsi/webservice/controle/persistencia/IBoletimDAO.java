@@ -12,7 +12,7 @@ public interface IBoletimDAO {
 	
 	public Boolean deletar(String id);
 	
-	public void alterar(BoletimFurtoVeiculo boletim, String id);
+	public boolean alterar(BoletimFurtoVeiculo boletim, String id);
 	
 	public ArrayList<BoletimFurtoVeiculo> listarTodos();
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
+import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoEncontradoException;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.EnvolvidoEm;
 import br.edu.utfpr.td.tsi.webservice.utils.CSVReaderUtil;
@@ -26,54 +27,56 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getIdentificador().equals(id)) {
 				bd.remove(b);
-				System.out.println("Boletim excluído com sucesso!");
 				return true;
 			}
 		}
-		System.out.println("Falha ao excluir");
+
 		return false;
-	
+
 	}
 
 	@Override
-	public void alterar(@Valid BoletimFurtoVeiculo boletim, String id) {
+	public boolean alterar(@Valid BoletimFurtoVeiculo boletim, String id) {
+		boolean alterado = false;
 		for (BoletimFurtoVeiculo b : bd) {
 			if (boletim.getIdentificador().equals(id)) {
 				bd.remove(b);
 				bd.add(boletim);
-				return;
+
+				alterado = true;
 			}
 		}
-		System.out.println("Boletim alterado com sucesso!");
+		if (alterado) {
+			return true;
+		} else
+
+			return false;
 
 	}
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> listarTodos() {
-		for (BoletimFurtoVeiculo b : this.bd) {
-			EnvolvidoEm envolvido = new EnvolvidoEm();
-			envolvido.setIdentificador(b.getIdentificador());
-			envolvido.setCrime(b.getCrime());
-			if(!b.getVeiculoFurtado().getEnvolvidoEm().contains(envolvido)) {
-			b.getVeiculoFurtado().adicionarListaEnvolvido(envolvido);
-			}
-
+		bd = adicionarListaEnvolvimento(bd);
+		if (bd.isEmpty()) {
+			throw new BoletimNaoEncontradoException("Nenhum boletim não encontrado");
 		}
 		return bd;
 	}
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> buscarPorId(String id) {
-		ArrayList<BoletimFurtoVeiculo> boletimBusca = new ArrayList<>();
+		ArrayList<BoletimFurtoVeiculo> boletim = new ArrayList<>();
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getIdentificador().equals(id)) {
-				boletimBusca.add(b);
-				EnvolvidoEm envolvido = new EnvolvidoEm();
-				envolvido.setIdentificador(b.getIdentificador());
-				envolvido.setCrime(b.getCrime());
+				boletim.add(b);
+				b = adicionarEnvolvimento(b);
 			}
 		}
-		return boletimBusca;
+		if (boletim.isEmpty()) {
+			throw new BoletimNaoEncontradoException("Boletim não encontrado");
+		}
+
+		return boletim;
 	}
 
 	@Override
@@ -85,6 +88,9 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 			if (b.getLocalOcorrencia().getCidade().equals(cidade)) {
 				boletins.add(b);
 			}
+		}
+		if (boletins.isEmpty()) {
+			throw new BoletimNaoEncontradoException("Cidade não encontrada");
 		}
 		return boletins;
 	}
@@ -98,6 +104,11 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 				boletins.add(b);
 			}
 		}
+
+		if (boletins.isEmpty()) {
+			throw new BoletimNaoEncontradoException("Período não encontrado");
+		}
+
 		return boletins;
 	}
 
@@ -112,14 +123,38 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 			}
 		}
 
+		if (boletins.isEmpty()) {
+			throw new BoletimNaoEncontradoException("Cidade ou período não encontrado");
+		}
+
 		return boletins;
 	}
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> lerBanco() {
-		String path = "C:\\temp\\furtos.csv";
+		String path = "C:\\pasta\\temp\\furtos.csv";
 		ArrayList<BoletimFurtoVeiculo> boletins = CSVReaderUtil.readDataLineByLine(path);
 		return boletins;
+	}
+
+	public ArrayList<BoletimFurtoVeiculo> adicionarListaEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd) {
+		for (BoletimFurtoVeiculo b : this.bd) {
+			EnvolvidoEm envolvido = new EnvolvidoEm();
+			envolvido.setIdentificador(b.getIdentificador());
+			envolvido.setCrime(b.getCrime());
+			if (!b.getVeiculoFurtado().getEnvolvidoEm().contains(envolvido)) {
+				b.getVeiculoFurtado().adicionarListaEnvolvido(envolvido);
+			}
+		}
+
+		return bd;
+	}
+
+	public BoletimFurtoVeiculo adicionarEnvolvimento(BoletimFurtoVeiculo b) {
+		EnvolvidoEm envolvido = new EnvolvidoEm();
+		envolvido.setIdentificador(b.getIdentificador());
+		envolvido.setCrime(b.getCrime());
+		return b;
 	}
 
 }

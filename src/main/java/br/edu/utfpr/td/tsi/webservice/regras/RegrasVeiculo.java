@@ -45,6 +45,14 @@ public class RegrasVeiculo implements IRegrasVeiculo {
 		bd = boletimDAO.listarTodos();
 		return veiculoDAO.listarTodos(bd);
 	}
+	
+	public Veiculo gerenciarVeiculo(Veiculo veiculo) {
+		String cor = veiculo.getCor().toUpperCase();
+		String tipo = veiculo.getTipoVeiculo().toUpperCase();
+		veiculo.setCor(cor);
+		veiculo.setTipoVeiculo(tipo);
+		return veiculo;
+	}
 
 	@Override
 	public ArrayList<Veiculo> buscarVeiculo(String placa, String cor, String tipo) {
