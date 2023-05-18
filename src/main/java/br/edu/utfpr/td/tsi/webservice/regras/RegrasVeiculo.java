@@ -45,7 +45,7 @@ public class RegrasVeiculo implements IRegrasVeiculo {
 		bd = boletimDAO.listarTodos();
 		return veiculoDAO.listarTodos(bd);
 	}
-	
+
 	public Veiculo gerenciarVeiculo(Veiculo veiculo) {
 		String cor = veiculo.getCor().toUpperCase();
 		String tipo = veiculo.getTipoVeiculo().toUpperCase();
@@ -72,6 +72,5 @@ public class RegrasVeiculo implements IRegrasVeiculo {
 
 		return veiculos;
 	}
-
 
 }

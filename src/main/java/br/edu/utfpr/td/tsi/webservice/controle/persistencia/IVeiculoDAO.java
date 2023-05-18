@@ -12,11 +12,9 @@ public interface IVeiculoDAO {
 	public ArrayList<Veiculo> buscarPorCor(String cor, ArrayList<BoletimFurtoVeiculo> bd);
 
 	public ArrayList<Veiculo> buscarPorTipo(String tipo, ArrayList<BoletimFurtoVeiculo> bd);
-	
+
 	public ArrayList<Veiculo> buscarPorCorETipo(String cor, String tipo, ArrayList<BoletimFurtoVeiculo> bd);
-	
+
 	public ArrayList<Veiculo> listarTodos(ArrayList<BoletimFurtoVeiculo> bd);
-	
-	//public ArrayList<BoletimFurtoVeiculo>adicionarEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd);
 
 }

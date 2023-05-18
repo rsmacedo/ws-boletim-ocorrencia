@@ -24,7 +24,8 @@ public class Emplacamento {
 		return Objects.equals(placa, other.placa);
 	}
 
-	@NotBlank @PlacaVeiculoValidacao
+	@NotBlank
+	@PlacaVeiculoValidacao
 	private String placa;
 	@NotBlank
 	private String estado;

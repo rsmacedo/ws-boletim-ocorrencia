@@ -77,11 +77,11 @@ public class VeiculoDAOEmMemoria implements IVeiculoDAO {
 				veiculos.add(b.getVeiculoFurtado());
 			}
 		}
-		
+
 		if (veiculos.isEmpty()) {
 			throw new VeiculoNaoEncontradoException("Cor ou tipo não encontrado");
 		}
-		
+
 		return veiculos;
 	}
 

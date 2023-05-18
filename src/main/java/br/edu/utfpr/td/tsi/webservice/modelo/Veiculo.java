@@ -91,15 +91,6 @@ public class Veiculo {
 			this.envolvidoEm.add(envolvidoEm);
 		}
 	}
-	/*
-	 * public void adicionarEnvolvimento(ArrayList<BoletimFurtoVeiculo> bd) {
-	 * for(BoletimFurtoVeiculo b: bd) {
-	 * if(b.getVeiculoFurtado().getEmplacamento().getPlaca() ==
-	 * this.emplacamento.getPlaca()) {
-	 * this.envolvidoEm.setIdentificador(b.getIdentificador());
-	 * this.envolvidoEm.setCrime(b.getCrime()); }else { this.envolvidoEm = null; } }
-	 * }
-	 */
 
 	@Override
 	public String toString() {

@@ -44,7 +44,6 @@ public class EnvolvidoEm {
 		return veiculoFurtado;
 	}
 
-
 	public void setCrime(String crime) {
 		this.crime = crime;
 	}
@@ -69,7 +68,5 @@ public class EnvolvidoEm {
 		EnvolvidoEm other = (EnvolvidoEm) obj;
 		return Objects.equals(identificador, other.identificador);
 	}
-	
-	
 
 }

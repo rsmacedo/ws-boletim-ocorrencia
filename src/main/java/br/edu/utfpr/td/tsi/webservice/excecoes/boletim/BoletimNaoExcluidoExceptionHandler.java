@@ -5,11 +5,11 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
 @Provider
-public class BoletimNaoExcluidoExceptionHandler implements ExceptionMapper<BoletimNaoExcluidoException>{
+public class BoletimNaoExcluidoExceptionHandler implements ExceptionMapper<BoletimNaoExcluidoException> {
 
 	@Override
 	public Response toResponse(BoletimNaoExcluidoException exception) {
-		return Response.status(Response.Status.NOT_FOUND).entity(exception.getMessage()).build();
+		return Response.status(Response.Status.BAD_REQUEST).entity(exception.getMessage()).build();
 
 	}
 

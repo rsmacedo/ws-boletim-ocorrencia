@@ -70,7 +70,7 @@ public class CSVReaderUtil {
 				boletim.setVeiculoFurtado(veiculo);
 				boletim.setVeiculoFurtado(veiculo);
 
-				if(boletins.contains(boletim)) {
+				if (boletins.contains(boletim)) {
 					boletins.remove(boletim);
 				}
 				boletins.add(boletim);

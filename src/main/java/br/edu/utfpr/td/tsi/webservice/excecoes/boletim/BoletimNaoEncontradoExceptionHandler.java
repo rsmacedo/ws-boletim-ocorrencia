@@ -10,7 +10,7 @@ public class BoletimNaoEncontradoExceptionHandler implements ExceptionMapper<Bol
 	@Override
 	public Response toResponse(BoletimNaoEncontradoException exception) {
 		
-		return Response.status(Response.Status.BAD_REQUEST).entity(exception.getMessage()).build();
+		return Response.status(Response.Status.NOT_FOUND).entity(exception.getMessage()).build();
 
 	}
 

@@ -16,9 +16,12 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 	private ArrayList<BoletimFurtoVeiculo> bd = lerBanco();
 
 	@Override
-	public void persistir(@Valid BoletimFurtoVeiculo boletim) {
-		bd.add(boletim);
-		System.out.println("Boletim salvo no banco de dados: " + boletim);
+	public Boolean persistir(@Valid BoletimFurtoVeiculo boletim) {
+
+		if (bd.add(boletim)) {
+			return true;
+		}
+		return false;
 
 	}
 
@@ -36,21 +39,18 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 	}
 
 	@Override
-	public boolean alterar(@Valid BoletimFurtoVeiculo boletim, String id) {
-		boolean alterado = false;
+	public Boolean alterar(@Valid BoletimFurtoVeiculo boletim, String id) {
+
 		for (BoletimFurtoVeiculo b : bd) {
-			if (boletim.getIdentificador().equals(id)) {
+			if (b.getIdentificador().equals(id)) {
 				bd.remove(b);
 				bd.add(boletim);
 
-				alterado = true;
+				return true;
 			}
 		}
-		if (alterado) {
-			return true;
-		} else
 
-			return false;
+		return false;
 
 	}
 

@@ -5,24 +5,23 @@ import java.util.ArrayList;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 
 public interface IBoletimDAO {
-	
-	public ArrayList<BoletimFurtoVeiculo> lerBanco();
-	
-	public void persistir(BoletimFurtoVeiculo boletim);
-	
-	public Boolean deletar(String id);
-	
-	public boolean alterar(BoletimFurtoVeiculo boletim, String id);
-	
-	public ArrayList<BoletimFurtoVeiculo> listarTodos();
-	
-	public ArrayList<BoletimFurtoVeiculo> buscarPorId(String id);
-	
-	public ArrayList<BoletimFurtoVeiculo> buscarPorCidade(String cidade);
-	
-	public ArrayList<BoletimFurtoVeiculo> buscarPorPeriodo(String periodo);
-	
-	public ArrayList<BoletimFurtoVeiculo> buscarPorCidadeEPeriodo(String cidade, String periodo);
 
+	public ArrayList<BoletimFurtoVeiculo> lerBanco();
+
+	public Boolean persistir(BoletimFurtoVeiculo boletim);
+
+	public Boolean deletar(String id);
+
+	public Boolean alterar(BoletimFurtoVeiculo boletim, String id);
+
+	public ArrayList<BoletimFurtoVeiculo> listarTodos();
+
+	public ArrayList<BoletimFurtoVeiculo> buscarPorId(String id);
+
+	public ArrayList<BoletimFurtoVeiculo> buscarPorCidade(String cidade);
+
+	public ArrayList<BoletimFurtoVeiculo> buscarPorPeriodo(String periodo);
+
+	public ArrayList<BoletimFurtoVeiculo> buscarPorCidadeEPeriodo(String cidade, String periodo);
 
 }

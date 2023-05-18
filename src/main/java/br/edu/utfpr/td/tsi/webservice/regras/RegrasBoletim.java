@@ -1,5 +1,6 @@
 package br.edu.utfpr.td.tsi.webservice.regras;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.controle.persistencia.IBoletimDAO;
 import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoAlteradoException;
+import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoCadastradoException;
 import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoEncontradoException;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.Endereco;
@@ -20,8 +22,11 @@ public class RegrasBoletim implements IRegrasBoletim {
 
 	@Override
 	public void cadastrar(BoletimFurtoVeiculo boletim) {
+
 		boletim = gerenciarDados(boletim);
-		boletimDAO.persistir(boletim);
+		if (!boletimDAO.persistir(boletim)) {
+			throw new BoletimNaoCadastradoException("Boletim não cadastrado");
+		}
 
 	}
 
@@ -45,8 +50,8 @@ public class RegrasBoletim implements IRegrasBoletim {
 	@Override
 	public void alterar(BoletimFurtoVeiculo boletim, String id) {
 		boletim = gerenciarDados(boletim);
-		
-		if(!boletimDAO.alterar(boletim, id)) {
+
+		if (!boletimDAO.alterar(boletim, id)) {
 			throw new BoletimNaoAlteradoException("Falha ao tentar alterar boletim");
 		}
 
@@ -59,7 +64,7 @@ public class RegrasBoletim implements IRegrasBoletim {
 	}
 
 	public ArrayList<BoletimFurtoVeiculo> buscarPorId(String id) {
-		
+
 		return boletimDAO.buscarPorId(id);
 	}
 
@@ -74,13 +79,13 @@ public class RegrasBoletim implements IRegrasBoletim {
 	}
 
 	public ArrayList<BoletimFurtoVeiculo> buscarPorCidadeEPeriodo(String cidade, String periodo) {
-		
+
 		return boletimDAO.buscarPorCidadeEPeriodo(cidade, periodo);
 	}
 
 	@Override
 	public ArrayList<BoletimFurtoVeiculo> buscarBoletim(String identificador, String cidade, String periodo) {
-		
+
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 		if (identificador != null) {
 			bd = buscarPorId(identificador);
@@ -94,24 +99,24 @@ public class RegrasBoletim implements IRegrasBoletim {
 			bd = listarTodos();
 		return bd;
 	}
-	
+
 	public BoletimFurtoVeiculo gerenciarDados(BoletimFurtoVeiculo boletim) {
-		
+
 		Endereco endereco = boletim.getLocalOcorrencia();
 		String cidade = boletim.getLocalOcorrencia().getCidade().toUpperCase();
 		endereco.setCidade(cidade);
 		boletim.setLocalOcorrencia(endereco);
-		
+
 		String periodo = boletim.getPeriodoOcorrencia().toUpperCase();
 		boletim.setPeriodoOcorrencia(periodo);
-		
+
 		RegrasVeiculo regrasVeiculo = new RegrasVeiculo();
 		Veiculo veiculo = boletim.getVeiculoFurtado();
 		veiculo = regrasVeiculo.gerenciarVeiculo(veiculo);
 		boletim.setVeiculoFurtado(veiculo);
-		
+
 		return boletim;
-		
+
 	}
 
 }
