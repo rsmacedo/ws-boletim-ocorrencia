@@ -18,8 +18,8 @@ Este é um projeto de exemplo que implementa uma API REST usando Java Spring Boo
 2. Clone este repositório para a sua máquina local.
 3. Abra o projeto em sua IDE Java favorita.
 4. Aguarde a importação das dependências do projeto.
-5. Localize o arquivo `Application.java` no pacote principal.
-6. Execute a classe `Application.java` como um aplicativo Java para iniciar o servidor.
+5. Localize o arquivo `Programa.java` no pacote principal.
+6. Execute a classe `Programa.java` como um aplicativo Java para iniciar o servidor.
 7. A API estará disponível em `http://localhost:8080`.
 
 ## Contribuições
