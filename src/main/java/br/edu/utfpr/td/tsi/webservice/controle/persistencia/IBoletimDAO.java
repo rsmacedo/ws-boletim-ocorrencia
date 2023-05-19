@@ -8,11 +8,11 @@ public interface IBoletimDAO {
 
 	public ArrayList<BoletimFurtoVeiculo> lerBanco();
 
-	public Boolean persistir(BoletimFurtoVeiculo boletim);
+	public void persistir(BoletimFurtoVeiculo boletim);
 
-	public Boolean deletar(String id);
+	public void deletar(String id);
 
-	public Boolean alterar(BoletimFurtoVeiculo boletim, String id);
+	public void alterar(BoletimFurtoVeiculo boletim, String id);
 
 	public ArrayList<BoletimFurtoVeiculo> listarTodos();
 

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
+import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoAlteradoException;
 import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoEncontradoException;
+import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoExcluidoException;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.EnvolvidoEm;
 import br.edu.utfpr.td.tsi.webservice.utils.CSVReaderUtil;
@@ -16,41 +18,47 @@ public class BoletimDAOEmMemoria implements IBoletimDAO {
 	private ArrayList<BoletimFurtoVeiculo> bd = lerBanco();
 
 	@Override
-	public Boolean persistir(@Valid BoletimFurtoVeiculo boletim) {
+	public void persistir(@Valid BoletimFurtoVeiculo boletim) {
 
 		if (bd.add(boletim)) {
-			return true;
+			return;
 		}
-		return false;
+
+		throw new BoletimNaoExcluidoException("Falha ao tentar cadastrar boletim");
 
 	}
 
 	@Override
-	public Boolean deletar(String id) {
+	public void deletar(String id) {
+
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getIdentificador().equals(id)) {
 				bd.remove(b);
-				return true;
+
+				return;
 			}
 		}
 
-		return false;
+		throw new BoletimNaoExcluidoException("Falha ao tentar excluir boletim");
 
 	}
 
 	@Override
-	public Boolean alterar(@Valid BoletimFurtoVeiculo boletim, String id) {
+	public void alterar(@Valid BoletimFurtoVeiculo boletim, String id) {
+		if (id.isBlank()) {
+			throw new BoletimNaoAlteradoException("Falha ao tentar alterar boletim");
+		}
 
 		for (BoletimFurtoVeiculo b : bd) {
 			if (b.getIdentificador().equals(id)) {
 				bd.remove(b);
 				bd.add(boletim);
 
-				return true;
+				return;
 			}
 		}
 
-		return false;
+		throw new BoletimNaoAlteradoException("Falha ao tentar alterar boletim");
 
 	}
 

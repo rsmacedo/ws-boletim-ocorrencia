@@ -1,15 +1,11 @@
 package br.edu.utfpr.td.tsi.webservice.regras;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.edu.utfpr.td.tsi.webservice.controle.persistencia.IBoletimDAO;
-import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoAlteradoException;
-import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoCadastradoException;
-import br.edu.utfpr.td.tsi.webservice.excecoes.boletim.BoletimNaoEncontradoException;
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
 import br.edu.utfpr.td.tsi.webservice.modelo.Endereco;
 import br.edu.utfpr.td.tsi.webservice.modelo.Veiculo;
@@ -24,36 +20,22 @@ public class RegrasBoletim implements IRegrasBoletim {
 	public void cadastrar(BoletimFurtoVeiculo boletim) {
 
 		boletim = gerenciarDados(boletim);
-		if (!boletimDAO.persistir(boletim)) {
-			throw new BoletimNaoCadastradoException("Boletim não cadastrado");
-		}
+		boletimDAO.persistir(boletim);
 
 	}
 
 	@Override
 	public void deletar(String id) {
 
-		if (id != null) {
-			if (id.isBlank()) {
-				throw new BoletimNaoEncontradoException("Falha ao tentar excluir boletim");
-			} else {
-				if (boletimDAO.deletar(id)) {
-					return;
-				} else {
-					throw new BoletimNaoEncontradoException("Falha ao tentar excluir boletim");
-				}
-			}
-		} else
-			throw new BoletimNaoEncontradoException("Falha ao tentar excluir boletim");
+		boletimDAO.deletar(id);
+
 	}
 
 	@Override
 	public void alterar(BoletimFurtoVeiculo boletim, String id) {
-		boletim = gerenciarDados(boletim);
 
-		if (!boletimDAO.alterar(boletim, id)) {
-			throw new BoletimNaoAlteradoException("Falha ao tentar alterar boletim");
-		}
+		boletim = gerenciarDados(boletim);
+		boletimDAO.alterar(boletim, id);
 
 	}
 

@@ -1,6 +1,5 @@
 package br.edu.utfpr.td.tsi.webservice.endpoint;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class BoletimEndpoint {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarBoletim(BoletimFurtoVeiculo b) throws ParseException {
+	public Response buscarBoletim(BoletimFurtoVeiculo b) {
 		ArrayList<BoletimFurtoVeiculo> bd = new ArrayList<>();
 		bd = regrasBoletim.buscarBoletim(identificador, cidade, periodo);
 
@@ -59,7 +58,7 @@ public class BoletimEndpoint {
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response alterarBoletim(BoletimFurtoVeiculo b) {
+	public Response alterarBoletim(@Valid BoletimFurtoVeiculo b) {
 
 		regrasBoletim.alterar(b, identificador);
 

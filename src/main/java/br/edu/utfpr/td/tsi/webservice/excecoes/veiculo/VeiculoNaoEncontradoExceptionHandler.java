@@ -10,7 +10,7 @@ public class VeiculoNaoEncontradoExceptionHandler implements ExceptionMapper<Vei
 	@Override
 	public Response toResponse(VeiculoNaoEncontradoException exception) {
 
-		return Response.status(Response.Status.BAD_REQUEST).entity(exception.getMessage()).build();
+		return Response.status(Response.Status.NOT_FOUND).entity(exception.getMessage()).build();
 
 	}
 

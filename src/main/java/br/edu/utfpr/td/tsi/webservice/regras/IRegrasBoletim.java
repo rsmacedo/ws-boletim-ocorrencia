@@ -1,6 +1,5 @@
 package br.edu.utfpr.td.tsi.webservice.regras;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import br.edu.utfpr.td.tsi.webservice.modelo.BoletimFurtoVeiculo;
